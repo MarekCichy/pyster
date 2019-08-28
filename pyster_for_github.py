@@ -19,9 +19,12 @@ def set_coords():
              5:['"SEND" button in the message window of any user'],
              6:['"BACK" button of the browser']}
 
-    gui.alert(text='First I need to gather coordinates for certain points on your screen.', title='Pyster - automatic poster')
+    gui.alert(text='First I need to gather coordinates for certain points on your screen.', 
+              title='Pyster - automatic poster')
     for i in range(0, 7):
-        gui.confirm('Press OK, set the mouse cursor on the'+str(coords[i][0])+', wait till you hear a beep and come back here.', title='Pyster - automatic poster')
+        gui.confirm('Press OK, set the mouse cursor on the'+str(coords[i][0])+
+                    ', wait till you hear a beep and come back here.', 
+                    title='Pyster - automatic poster')
         time.sleep(5)
         coords[i]=gui.position()
         winsound.Beep(frequency=500, duration=500)
@@ -72,7 +75,8 @@ def get_user_batch(user_input):
     user_count = user_input
     mid_dict = {}
     last_dict = {}
-    gui.alert('Enter the "People" tab and filter out the users as you like.\nReturn here, press OK, switch to the portal page an click the gray background. \nWait for the beep', title='Pyster - automatic poster')
+    gui.alert('Enter the "People" tab and filter out the users as you like.\nReturn here, press OK, switch to the portal page an click the gray background. \nWait for the beep', 
+              title='Pyster - automatic poster')
     time.sleep(5)
     while (len(mid_dict) < user_input) and (user_count < 3500):
         temp_dict = scrape_dict(users=user_count)
@@ -149,13 +153,16 @@ try:
         coords = set_coords()
     
     
-    user_input = int(gui.prompt('How many users do you want to message?', title='Pyster - automatic poster'))
+    user_input = int(gui.prompt('How many users do you want to message?', 
+                                title='Pyster - automatic poster'))
     new_dict = get_user_batch(user_input)
-    msg = str(gui.prompt('What message do you want to send?\nEnter the text below, click "OK" and wait a while.', title='Pyster - automatic poster'))
+    msg = str(gui.prompt('What message do you want to send?\nEnter the text below, click "OK" and wait a while.', 
+                         title='Pyster - automatic poster'))
     for key,value in new_dict.items():
         send_msg(key,msg)
     winsound.Beep(frequency=500, duration=500)
-    gui.alert('The message "'+msg+'" was succesfully sent to '+str(len(new_dict))+' users.', title='Pyster - automatic poster')
+    gui.alert('The message "'+msg+'" was succesfully sent to '+str(len(new_dict))+' users.', 
+              title='Pyster - automatic poster')
     backup()
 
 finally:
